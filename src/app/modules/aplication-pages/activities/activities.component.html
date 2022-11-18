@@ -1,0 +1,219 @@
+<h1>Mitigation team</h1>
+<mat-divider></mat-divider>
+<br />
+
+<body>
+  <div class="p-5">
+  <div class="card">
+    <div class="card-body">
+      <!-- Tipo de reporte -->
+      <form [formGroup]="form" (ngSubmit)="saveActivity()">
+        <div class="row">
+          <!-- Register Block -->
+
+          <div class="col-lg-3">
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                <mat-icon> local_activity</mat-icon>
+              </span>
+              <input
+                formControlName="Plan"
+                type="text"
+                class="form-control"
+                placeholder="Actividad"
+              />
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                <mat-icon>supervisor_account</mat-icon>
+              </span>
+              <input
+                formControlName="Supervisor"
+                type="number"
+                class="form-control"
+                placeholder="Supervisor"
+              />
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                <mat-icon>whatshot</mat-icon>
+              </span>
+              <select
+                [(ngModel)]="selectedChemical"
+                formControlName="Chemical"
+                class="form-select"
+              >
+                <option disabled selected value="">Quimico</option>
+                <option
+                  [ngValue]="chemical"
+                  *ngFor="let chemical of chemicalList"
+                >
+                  {{ chemical.chemicalName }}
+                </option>
+                <option></option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Register Date -->
+
+          <div class="col-lg-3">
+            <div class="input-group input-group-lg mb-3">
+              <span class="input-group-text">
+                <mat-icon>person_outline</mat-icon>
+              </span>
+              <input
+                formControlName="Date"
+                type="datetime-local"
+                class="form-control"
+                placeholder="Fecha"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Register Location -->
+            <div class="col-lg-3">
+              <!-- Register Location -->
+
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>video_label</mat-icon>
+                </span>
+                <select
+                  [(ngModel)]="selectedLocation"
+                  formControlName="Location"
+                  class="form-select"
+                >
+                  <option disabled selected value="">Ubicación</option>
+                  <option
+                    [ngValue]="location"
+                    *ngFor="let location of locationList"
+                  >
+                    {{ location.bedID }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Register Block -->
+            <div class="col-lg-2">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>view_module</mat-icon>
+                </span>
+
+                <input
+                  value="{{ selectedLocation?.block }}"
+                  type="text"
+                  class="form-control"
+                  placeholder="#Bloque"
+                  readonly
+                />
+              </div>
+            </div>
+
+            <!-- Register Ship -->
+
+            <div class="col-lg-3">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>view_quilt</mat-icon>
+                </span>
+                <input
+                  value="{{ selectedLocation?.ship }}"
+                  type="text"
+                  class="form-control"
+                  placeholder="#Nave"
+                  readonly
+                />
+              </div>
+            </div>
+
+            <!-- Register Bed -->
+
+            <div class="col-lg-4">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>view_week</mat-icon>
+                </span>
+                <input
+                  value="{{ selectedLocation?.bedNumber }}"
+                  type="number"
+                  class="form-control"
+                  placeholder="#cama"
+                  readonly
+                />
+                <input
+                  t
+                  value="{{ selectedLocation?.bedSide }}"
+                  ype="text"
+                  class="form-control"
+                  placeholder="Lado"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button
+              [disabled]="this.form.invalid"
+              type="submit"
+              class="btn btn-success btn-lg"
+            >
+              <i> Agregar</i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+  <div>
+    <div class="p-5">
+      <div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="tittle">Registros Recientes</h5>
+            <table class="table">
+              <thead>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>hora</th>
+                <th>zone</th>
+                <th>solution</th>
+                <th>Completado</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let element of activitiesList">
+                  <td>{{ element.planID }}</td>
+                  <td>{{ element.planChemical }}</td>
+                  <td>{{ element.planDate }}</td>
+                  <td>{{ element.bedID }}</td>
+                  <td>{{ element.supervisorID }}</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="flexSwitchCheckDefault"
+                      />
+  
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

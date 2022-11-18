@@ -1,0 +1,249 @@
+<p>ID:</p>
+<p>Last report:</p>
+<h1>Name-User</h1>
+<mat-divider></mat-divider>
+<div class="p-5">
+  <div class="">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="tittle">{{ action }} Registro</h5>
+
+        <!-- Formulario de ingresi de Datos -->
+
+        <form [formGroup]="form" (ngSubmit)="saveRegister()">
+          <div class="row">
+            <!-- Monitor Name -->
+            <div class="col-lg-9">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>person_outline</mat-icon>
+                </span>
+                <input
+                  formControlName="Monitor"
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre"
+                />
+                <input
+                  formControlName="MonitorID"
+                  type="number"
+                  class="form-control"
+                  placeholder="ID"
+                />
+              </div>
+            </div>
+
+            <!-- Supervisor nAME  -->
+
+            <div class="col-lg-3">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon> attach_file</mat-icon>
+                </span>
+                <input
+                  formControlName="Supervisor"
+                  maxlength="2"
+                  type="number"
+                  class="form-control"
+                  placeholder="Supervisor"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-3">
+              <!-- Register Location -->
+
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>video_label</mat-icon>
+                </span>
+                <select
+                  [(ngModel)]="selectedLocation"
+                  formControlName="Location"
+                  class="form-select"
+                >
+                  <option disabled selected value="">Ubicación</option>
+                  <option
+                    [ngValue]="location"
+                    *ngFor="let location of locationList"
+                  >
+                    {{ location.bedID }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Register Block -->
+            <div class="col-lg-2">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>view_module</mat-icon>
+                </span>
+
+                <input
+                  value="{{ selectedLocation?.block }}"
+                  type="text"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+            </div>
+
+            <!-- Register Ship -->
+
+            <div class="col-lg-2">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>view_quilt</mat-icon>
+                </span>
+                <input
+                  value="{{ selectedLocation?.ship }}"
+                  type="text"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+            </div>
+
+            <!-- Register Bed -->
+
+            <div class="col-lg-3">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>view_week</mat-icon>
+                </span>
+                <input
+                  value="{{ selectedLocation?.bedNumber }}"
+                  type="number"
+                  class="form-control"
+                  readonly
+                />
+                <input
+                  value="{{ selectedLocation?.bedSide }}"
+                  type="text"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+            </div>
+
+            <!-- Register Square -->
+
+            <div class="col-lg-2">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>stop</mat-icon>
+                </span>
+                <select formControlName="Square" class="form-select">
+                  <option disabled selected value="">Cuadrante</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tipo de reporte -->
+
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>bug_report</mat-icon>
+                </span>
+
+                <select
+                  [(ngModel)]="selectedDesease"
+                  formControlName="Plague"
+                  class="form-select"
+                >
+                  <option disabled selected value="">Plaga</option>
+                  <option [ngValue]="desease" *ngFor="let desease of deseaseList">
+                    {{ desease.deseaseName }}
+                  </option>
+                </select>
+                <input
+                  readonly
+                  class="form-control"
+                  type="text"
+                  value="{{ selectedDesease?.deseaseSymptom }}"
+                />
+              </div>
+            </div>
+            <!-- Register Date -->
+
+            <div class="col-lg-4">
+              <div class="input-group input-group-lg mb-3">
+                <span class="input-group-text">
+                  <mat-icon>person_outline</mat-icon>
+                </span>
+                <input
+                  formControlName="Date"
+                  type="datetime-local"
+                  class="form-control"
+                  placeholder="Fecha"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Boton de Envio de datos -->
+
+          <div class="d-grid gap-2">
+            <button
+              [disabled]="this.form.invalid"
+              type="submit"
+              class="btn btn-success btn-lg"
+            >
+              <i> Agregar</i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="tittle">Registros Recientes</h5>
+        <table class="table">
+          <thead>
+            <th>ID</th>
+            <th>Fecha & hora</th>
+            <th>Plaga</th>
+            <th>Monitor</th>
+            <th>Cama</th>
+            <th>Supervisor</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let binnacle of binnacleList">
+              <td>{{ binnacle.binnacleID }}</td>
+              <td>{{ binnacle.binnacleDate }}</td>
+              <td>{{ binnacle.binnacleID }}</td>
+              <td>{{ binnacle.monitorID }}</td>
+              <td>{{ binnacle.bedID }}</td>
+              <td>{{ binnacle.supervisorID }}</td>
+              <td>
+                <i
+                  (click)="editRegister(binnacle)"
+                  class="far fa-edit fa-pen-to-square"
+                ></i>
+              </td>
+              <td>
+                <i
+                  (click)="deleteRegister(binnacle.binnacleID)"
+                  class="far fa-solid fa-trash-can"
+                ></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

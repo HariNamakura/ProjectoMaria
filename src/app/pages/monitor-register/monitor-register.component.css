@@ -1,0 +1,21 @@
+
+.tittle{
+    
+    font-weight: 900;
+    font-style: bold;
+    color: gray;
+   
+}
+.far{
+    cursor: pointer;
+}
+
+.green-icon{
+    color: #198754
+}
+
+.red-icon{
+    color: #dc3545
+}
+
+.mat-form-field{ width: 100%; }

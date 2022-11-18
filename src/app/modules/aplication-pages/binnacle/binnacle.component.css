@@ -1,0 +1,44 @@
+
+.tittle{
+    
+    font-weight: 900;
+    font-style: bold;
+    color: gray;
+   
+}
+.far{
+    cursor: pointer;
+}
+
+.green-icon{
+    color: #198754
+}
+
+.red-icon{
+    color: #dc3545
+}
+
+.mat-form-field{ width: 100%; }
+header{
+    border-radius: 25px;
+}
+
+body {
+    border-radius: 26px;
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

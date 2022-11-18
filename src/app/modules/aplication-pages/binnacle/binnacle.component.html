@@ -1,0 +1,36 @@
+<body>
+  <mat-card class="content-title">
+    <mat-card-title>Bitacoras De Monitor</mat-card-title>
+  </mat-card>
+<mat-divider></mat-divider>
+<div class="p-5">
+    <div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="tittle">Registros Recientes</h5>
+            <table class="table">
+              <thead>
+                <th>ID</th>
+                <th>Fecha & hora</th>
+                <th>Plaga</th>
+                <th>Monitor</th>
+                <th>Cama</th>
+                <th>Supervisor</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let binnacle of binnacleList">
+                  <td>{{ binnacle.binnacleID }}</td>
+                  <td>{{ binnacle.binnacleDate }}</td>
+                  <td>{{ binnacle.binnacleID }}</td>
+                  <td>{{ binnacle.monitorID }}</td>
+                  <td>{{ binnacle.bedID }}</td>
+                  <td>{{ binnacle.supervisorID }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+</div>
+
+</body>

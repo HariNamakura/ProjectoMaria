@@ -1,0 +1,62 @@
+<mat-toolbar class="mat-elevation-z8  gradient-custom">
+    <button
+      mat-icon-button
+      *ngIf="sidenav.mode === 'over'"
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
+    MARIA
+  </mat-toolbar>
+  
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 gradient-custom">
+      <img
+        class="avatar mat-elevation-z8"
+        src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80"
+      />
+  
+      <h4 class="name">User name & lastname </h4>
+      <p class="designation">Rol</p>
+  
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLink="home">
+        <mat-icon>home</mat-icon>
+        <span> Inicio </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="activities">
+        <mat-icon>person</mat-icon>
+        <span> Actividades </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="alerts">
+        <mat-icon>info</mat-icon>
+        <span> Alertas </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="binnacle">
+        <mat-icon>noteadd</mat-icon>
+        <span> Bitacoras </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="reports-user">
+        <mat-icon>article</mat-icon>
+        <span> Reportes </span>
+      </button>
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLink="help">
+        <mat-icon>help</mat-icon>
+        <span> Ayuda </span>
+      </button>
+      <button mat-button class="menu-button" routerLink="help">
+        <mat-icon>account</mat-icon>
+        <span> Log out </span>
+      </button>
+    </mat-sidenav>s
+    <mat-sidenav-content>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
